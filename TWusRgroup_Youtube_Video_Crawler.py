@@ -3,18 +3,20 @@ import sys
 import os
 import numpy as np
 
-print "[pyfile_name] Processing....".format(pyfile_name = sys.argv[0])
-
-check = [sys.argv[1], sys.argv[2]]
-check_bol = np.all(map(lambda xx: xx > 0, map(len, check)))
-
-assert check_bol, "Invalid inputs. Usage: python TWusRgroup_Youtube_Video_Crawler.py <port> <logpath> [<dbpath>]"
-
 pyfile_name = sys.argv[0]
-port = int(sys.argv[1])
-logpath = sys.argv[2]
-print "[pyfile_name] Start mongod on localhost at port {port}".format(pyfile_name = pyfile_name, port = port)
-print "[pyfile_name] log file is under {logpath}".format(pyfile_name = pyfile_name, logpath = logpath)
+print "[{pyfile_name}] Processing....".format(pyfile_name = sys.argv[0])
+
+try:
+    port = int(sys.argv[1])
+    logpath = sys.argv[2]
+except:
+    print "Missing port or logpath"
+    print "Usage: python TWusRgroup_Youtube_Video_Crawler.py <port> <logpath> [<dbpath>]"
+    print "Exiting now...."
+    exit()
+
+print "[{pyfile_name}] Start mongod on localhost at port {port}".format(pyfile_name = pyfile_name, port = port)
+print "[{pyfile_name}] log file is under {logpath}".format(pyfile_name = pyfile_name, logpath = logpath)
 
 import requests
 try:
